@@ -1,0 +1,240 @@
+//////////create/////////////////
+
+USE [C44]
+GO
+/****** Object:  StoredProcedure [dbo].[product_create]    Script Date: 12/14/17 11:35:04 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER proc [dbo].[product_create]
+		@id INT OUTPUT
+	    ,@product_id int
+	   ,@model nvarchar(50)
+	   ,@brand nvarchar(50)
+	   
+
+
+AS
+/*
+
+ 
+
+	Declare @id int
+	Declare @product_id int = 1
+	Declare @model nvarchar(50) = 'Apple'
+	Declare @brand nvarchar(50) = 'Iphone X'
+
+	Execute dbo.product_create @id output, @product_id, @model, @brand
+
+
+	select @id
+
+
+*/
+
+BEGIN
+
+	
+
+INSERT INTO [dbo].[product]
+           
+           ([product_id]
+           ,[model]
+           ,[brand])
+     VALUES
+		   
+           (@product_id
+		   ,@model
+		   ,@brand)
+
+
+		   
+
+		   SET @id = SCOPE_IDENTITY()
+
+
+
+END
+
+/////////////delete//////////////
+
+USE [C44]
+GO
+/****** Object:  StoredProcedure [dbo].[product_delete]    Script Date: 12/14/17 11:38:49 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+ALTER proc [dbo].[product_delete]
+	@id int
+
+as
+
+/*
+	Declare @id int = 4
+
+
+	SELECT *
+FROM dbo.product
+
+
+	 Select *
+	 From dbo.product
+	 WHERE id = @id;
+
+	Execute dbo.product_delete @id
+
+	Select *
+	 From dbo.product
+	 WHERE id = @id;
+*/
+
+BEGIN
+
+
+
+	 DELETE FROM [dbo].[product]
+	 WHERE id = @id;
+
+	 
+	   
+
+
+
+END
+
+
+
+
+
+///////////getall//////////////
+
+USE [C44]
+GO
+/****** Object:  StoredProcedure [dbo].[product_getall]    Script Date: 12/14/17 11:39:31 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER proc [dbo].[product_getall]
+
+as
+
+/*
+
+	Execute dbo.product_getall
+
+*/
+
+BEGIN
+	SELECT [id]
+      ,[product_id]
+      ,[model]
+      ,[brand]
+  FROM [dbo].[product]
+
+END
+
+
+///////////get by id///////////
+
+USE [C44]
+GO
+/****** Object:  StoredProcedure [dbo].[product_getbyid]    Script Date: 12/14/17 11:40:23 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+ALTER proc [dbo].[product_getbyid]
+			@id int
+
+as
+/*
+
+	Declare @id int = 3
+
+	Execute dbo.product_getbyid @id
+
+*/
+
+BEGIN
+
+	SELECT [id]
+      ,[product_id]
+      ,[model]
+      ,[brand]
+
+  FROM [dbo].[product]
+  Where id = @id
+
+END
+
+
+
+//////////update/////////////
+
+USE [C44]
+GO
+/****** Object:  StoredProcedure [dbo].[product_update]    Script Date: 12/14/17 11:40:44 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+ALTER proc [dbo].[product_update]
+		@id INT OUTPUT
+	   ,@product_id int
+	   ,@model nvarchar(50)
+	   ,@brand nvarchar(50)
+	   
+as
+/*
+Declare @id int = 2
+Declare @product_id int = 9
+Declare @model nvarchar(50) = 'x'
+Declare @brand nvarchar(50) = 'z'
+
+          select*
+        FROM dbo.product
+        WHERE id = @id
+
+
+
+
+execute dbo.product_update @id, @product_id, @model, @brand
+
+          select*
+        FROM dbo.product
+        WHERE id = @id
+
+*/
+
+
+BEGIN
+
+	UPDATE [dbo].[product]
+	SET  
+		 [product_id] = @product_id
+	    ,[model] = @model
+	    ,[brand] = @brand
+		
+		
+		      
+	  Where id = @id
+
+
+
+END
